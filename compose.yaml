@@ -26,7 +26,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     ports:
-      - "${PGADMIN_PORT:-8080}:80"
+      - "${PGADMIN_PORT:-8111}:8111"
     volumes:
       - pgadmin_data:/var/lib/pgadmin
     networks:
@@ -41,7 +41,7 @@ services:
     container_name: qnet
     restart: unless-stopped
     ports:
-      - "${GO_PORT:-8088}:8088"
+      - "${GO_PORT:-8222}:8222"
     environment:
       - GO_HOST=${GO_HOST}
       - GO_PORT=${GO_PORT}
@@ -49,7 +49,6 @@ services:
       - POSTGRES_PORT=${POSTGRES_PORT}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
     depends_on:
       - postgres
     networks:
