@@ -18,7 +18,7 @@ services:
       - .env
 
   pgadmin:
-    image: dpage/pgadmin4:latest
+    image: dpage/pgadmin4:8.12
     container_name: pgadmin_web
     restart: unless-stopped
     environment:
@@ -27,6 +27,7 @@ services:
       PGADMIN_CONFIG_SERVER_MODE: 'True'
       PGADMIN_LISTEN_ADDRESS: '0.0.0.0'
       PGADMIN_LISTEN_PORT: ${PGADMIN_PORT:-8111}
+      PGADMIN_CONFIG_LOGIN_BANNER: "\"Login with: ${PGADMIN_DEFAULT_EMAIL:-admin@example.com}\""
     ports:
       - "${PGADMIN_PORT:-8111}:${PGADMIN_PORT:-8111}"
     volumes:
