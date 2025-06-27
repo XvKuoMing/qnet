@@ -18,7 +18,7 @@ services:
       - .env
 
   pgadmin:
-    image: dpage/pgadmin4:5.3
+    image: dpage/pgadmin4:8.4
     container_name: pgadmin_web
     restart: unless-stopped
     environment:
