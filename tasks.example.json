@@ -1,0 +1,6 @@
+{
+    "base_url": [
+        "/v1/index.html",
+        "/v2/index.html"
+    ]
+}

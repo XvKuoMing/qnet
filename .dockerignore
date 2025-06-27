@@ -1,0 +1,13 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+
+# Environment files
+.env
+.env*
+
+# App specific
+tasks*.json
