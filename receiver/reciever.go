@@ -46,7 +46,7 @@ func Register(endpoint string) string {
 func proxyHandler(c *gin.Context) {
 	method := c.Request.Method
 	endpoint := c.Request.URL.Path
-	baseURL := Register(c.Request.Host)
+	baseURL := Register(endpoint)
 	headers := c.Request.Header
 	body, err := io.ReadAll(c.Request.Body)
 	if err != nil {
@@ -55,7 +55,7 @@ func proxyHandler(c *gin.Context) {
 		return
 	}
 	if baseURL == "" {
-		c.JSON(http.StatusNotFound, gin.H{"error": "Endpoint not found"})
+		c.JSON(http.StatusNotFound, gin.H{"error": "BaseURL not found for endpoint"})
 		return
 	}
 

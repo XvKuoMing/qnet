@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      - "${POSTGRES_PORT:-5433}:${POSTGRES_PORT:-5433}"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
@@ -24,9 +24,11 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@example.com}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_CONFIG_SERVER_MODE: 'True'
+      PGADMIN_LISTEN_ADDRESS: '0.0.0.0'
+      PGADMIN_LISTEN_PORT: ${PGADMIN_PORT:-8111}
     ports:
-      - "${PGADMIN_PORT:-8111}:8111"
+      - "${PGADMIN_PORT:-8111}:${PGADMIN_PORT:-8111}"
     volumes:
       - pgadmin_data:/var/lib/pgadmin
     networks:
@@ -41,7 +43,7 @@ services:
     container_name: qnet
     restart: unless-stopped
     ports:
-      - "${GO_PORT:-8222}:8222"
+      - "${GO_PORT:-8222}:${GO_PORT:-8222}"
     environment:
       - GO_HOST=${GO_HOST}
       - GO_PORT=${GO_PORT}
