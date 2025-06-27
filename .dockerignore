@@ -10,4 +10,4 @@
 .env*
 
 # App specific
-tasks*.json
+tasks.example.json

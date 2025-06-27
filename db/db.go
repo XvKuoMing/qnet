@@ -72,26 +72,6 @@ func (db *DB) CreateTask(task *Task) error {
 	return nil
 }
 
-func (db *DB) GetPendingTasks() ([]Task, error) {
-	rows, err := db.conn.Query(context.Background(),
-		"SELECT id, base_url, endpoint, method, headers, body, status FROM tasks WHERE status = 'pending'")
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-
-	var tasks []Task
-	for rows.Next() {
-		var task Task
-		err := rows.Scan(&task.ID, &task.BaseURL, &task.Endpoint, &task.Method, &task.Headers, &task.Body, &task.Status)
-		if err != nil {
-			return nil, err
-		}
-		tasks = append(tasks, task)
-	}
-	return tasks, nil
-}
-
 func (db *DB) GetTaskByID(id int) (*Task, error) {
 	var task Task
 	err := db.conn.QueryRow(context.Background(),
